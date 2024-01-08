@@ -1,0 +1,239 @@
+# data file for the Fltk User Interface Designer (fluid)
+version 1.0400
+header_name {.h}
+code_name {.cxx}
+class UserInterface {open
+} {
+  Function {make_window()} {open
+  } {
+    Fl_Window window {
+      label Rustree open
+      xywh {302 127 869 604} type Double hide resizable
+    } {
+      Fl_Menu_Bar main_menubar {open
+        xywh {0 0 870 25}
+      } {
+        Submenu {} {
+          label {&File} open
+          xywh {20 20 100 20}
+        } {
+          MenuItem {} {
+            label Open
+            xywh {35 35 100 20} shortcut 0x4006f
+          }
+          MenuItem {} {
+            label Save
+            xywh {35 35 100 20} shortcut 0x40073
+          }
+          MenuItem {} {
+            label {Save as}
+            xywh {45 45 100 20} shortcut 0x50073
+          }
+          MenuItem {} {
+            label Settings
+            xywh {0 0 100 20}
+          }
+          Submenu {} {
+            label Export open
+            xywh {35 35 100 20}
+          } {
+            Submenu {} {
+              label Document open
+              xywh {35 35 100 20}
+            } {
+              MenuItem {} {
+                label {Text file}
+                xywh {40 40 100 20}
+              }
+              MenuItem {} {
+                label HTML
+                xywh {0 0 100 20}
+              }
+              MenuItem {} {
+                label Markdown
+                xywh {10 10 100 20}
+              }
+              MenuItem {} {
+                label JSON
+                xywh {0 0 100 20}
+              }
+            }
+            Submenu {} {
+              label Node open
+              xywh {35 35 100 20}
+            } {
+              MenuItem {} {
+                label {Text file}
+                xywh {50 50 100 20}
+              }
+              MenuItem {} {
+                label HTML
+                xywh {10 10 100 20}
+              }
+              MenuItem {} {
+                label Markdown
+                xywh {20 20 100 20}
+              }
+              MenuItem {} {
+                label Rtd
+                xywh {0 0 100 20}
+              }
+              MenuItem {} {
+                label JSON selected
+                xywh {10 10 100 20}
+              }
+            }
+          }
+          MenuItem {} {
+            label Quit
+            xywh {30 30 100 20} shortcut 0x40071
+          }
+        }
+        Submenu {} {
+          label {&Edit} open
+          xywh {15 15 100 20}
+        } {
+          MenuItem {} {
+            label Undo
+            xywh {10 10 100 20} shortcut 0x4007a
+          }
+          MenuItem {} {
+            label Redo
+            xywh {10 10 100 20} shortcut 0x40079
+          }
+          MenuItem {} {
+            label {Create node}
+            xywh {0 0 100 20} shortcut 0xff63
+          }
+          MenuItem {} {
+            label {Delete node}
+            xywh {10 10 100 20} shortcut 0xffff
+          }
+          MenuItem {} {
+            label {Move node up}
+            xywh {20 20 100 20} shortcut 0x8ff52
+          }
+          MenuItem {} {
+            label {Move node down}
+            xywh {0 0 100 20} shortcut 0x8ff54
+          }
+        }
+      }
+      Fl_Tabs main_tabs {open
+        xywh {0 25 1240 595}
+      } {
+        Fl_Group {} {
+          label Document open
+          xywh {0 45 1240 575}
+        } {
+          Fl_Tile {} {open
+            xywh {0 50 1240 560}
+          } {
+            Fl_Group {} {open
+              xywh {0 50 280 560} box UP_BOX
+            } {
+              Fl_Tree main_tree {
+                xywh {0 70 280 540}
+              }
+              Fl_Button cut_btn {
+                label Cut
+                tooltip Cut xywh {0 50 95 20}
+              }
+              Fl_Button copy_btn {
+                label Copy
+                tooltip Copy xywh {95 50 85 20}
+              }
+              Fl_Button paste_btn {
+                label Paste
+                tooltip Paste xywh {180 50 100 20}
+              }
+            }
+            Fl_Group right_main_tile_group {open
+              tooltip {Double click to switch the editor and view} xywh {280 50 960 560}
+            } {
+              Fl_Help_View main_text_view {
+                xywh {280 50 590 560} resizable
+              }
+              Fl_Group text_editor_group {open
+                xywh {280 50 960 560} hide
+              } {
+                Fl_Text_Editor main_text_editor {
+                  xywh {280 75 590 535} resizable
+                }
+                Fl_Input node_name_input {
+                  xywh {280 50 590 25}
+                }
+              }
+            }
+          }
+        }
+        Fl_Group {} {
+          label Resources open
+          xywh {0 45 1240 575} hide
+        } {
+          Fl_Tree resources_tree {
+            xywh {0 90 1240 525}
+          }
+          Fl_Button add_res_btn {
+            label {Add resource}
+            xywh {10 55 160 30}
+          }
+          Fl_Button del_res_btn {
+            label {Delete resource(s)}
+            xywh {175 55 175 30} shortcut 0xffff
+          }
+          Fl_Button rename_res_btn {
+            label {Rename resource}
+            xywh {355 55 145 30}
+          }
+          Fl_Button edit_res_btn {
+            label {Edit resource}
+            xywh {505 55 145 30}
+          }
+        }
+      }
+    }
+  }
+}
+
+class SettingsInterface {open
+} {
+  Function {make_window()} {open
+  } {
+    Fl_Window window {
+      label Settings open
+      xywh {518 110 464 536} type Double hide
+    } {
+      Fl_Tabs {} {open
+        xywh {0 0 490 550}
+      } {
+        Fl_Group {} {
+          label General open
+          xywh {0 20 465 520} hide
+        } {
+          Fl_Input_Choice theme_choice {
+            label Theme open
+            xywh {55 30 140 25}
+          } {}
+          Fl_Spinner editor_text_size {
+            label {Editor text size}
+            xywh {325 30 130 25}
+          }
+        }
+        Fl_Group {} {
+          label Shortcuts open
+          xywh {0 20 490 530}
+        } {
+          Fl_Browser shortcuts_browser {
+            xywh {0 55 465 485}
+            class HoldBrowser
+          }
+          Fl_Button reset_shortcuts {
+            label {Reset to the default shortcuts}
+            xywh {5 25 225 25}
+          }
+        }
+      }
+    }
+  }
+}

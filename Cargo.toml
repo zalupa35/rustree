@@ -1,0 +1,29 @@
+[package]
+name = "rustree"
+version = "0.1.0"
+edition = "2021"
+description = "Rustree is a notepad that stores text (in HTML format) in a hierarchical structure."
+homepage = "https://github.com/zalupa35/rustree"
+repository = "https://github.com/zalupa35/rustree"
+license = "MIT"
+
+[profile.release]
+strip = true
+opt-level = "z"
+lto = true
+codegen-units = 1
+
+[dependencies]
+fltk = { version = "1.4.19", features = ["fltk-bundled"] }
+fltk-theme = "0.7.2"
+binrw = "0.13.3"
+rand = "0.8.5"
+flate2 = "1.0.28"
+regex = "1.10.2"
+ron = "0.8.1"
+serde = { version = "1.0.194", features = ["derive"] }
+html2md = "0.2.14"
+serde_json = "1.0.111"
+
+[build-dependencies]
+fl2rust = "0.4"

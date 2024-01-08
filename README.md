@@ -16,7 +16,7 @@ Tested only on Windows.
 - **Rustree** has _eight_ themes (you can change the theme in the
   `File/Settings` menu).
 - You can add references to other nodes in the document in the node text.
-- **Rustree** is portable and small (2.5 mb).
+- **Rustree** is portable and small (3.4 mb).
 
 <hr>
 

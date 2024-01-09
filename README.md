@@ -4,7 +4,7 @@
 structure. (A document is a tree: it has a root node, which has child nodes,
 which have child nodes, etc...). It was inspired by Treepad.
 
-Tested only on Windows.
+Tested on Windows and Linux.
 
 ![Themes](assets/themes.gif)
 

@@ -18,8 +18,7 @@ pub fn process_node_path(path: String, document: Document, current_node: Node) -
                         .unwrap()
                         .children
                         .iter()
-                        .find(|n| n.id == current_node.id)
-                        .is_some()
+                        .any(|n| n.id == current_node.id)
                 }) {
                     if let Some(item) = document
                         .get_node(parent.1)

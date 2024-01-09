@@ -87,6 +87,7 @@ pub enum MoveDirection {
 }
 
 #[derive(Clone, Debug)]
+#[allow(clippy::enum_variant_names)]
 pub enum DocumentModification {
     /// Edit node with id
     EditNode(u32, Node),
@@ -106,19 +107,13 @@ pub fn find_node_with_same_name_in_same_parent_node(
     id: u32,
     name: String,
 ) -> Option<Node> {
-    if node.children.iter().find(|n| n.id == id).is_some()
-        && node
-            .children
-            .iter()
-            .find(|n| n.name == name && n.id != id)
-            .is_some()
+    if node.children.iter().any(|n| n.id == id)
+        && node.children.iter().any(|n| n.name == name && n.id != id)
     {
         return None;
     } else {
         for c in node.clone().children {
-            if find_node_with_same_name_in_same_parent_node(c, id, name.clone()).is_none() {
-                return None;
-            }
+            find_node_with_same_name_in_same_parent_node(c, id, name.clone())?;
         }
     }
     Some(node)

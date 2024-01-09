@@ -81,14 +81,12 @@ pub struct ResourcesManager {
 impl ResourcesManager {
     pub fn add_resource(&mut self, res: Resource) {
         self.resources.push(res.clone());
-        _ = std::fs::write(&self.temp_dir.join(res.id.to_string()), res.bytes);
+        _ = std::fs::write(self.temp_dir.join(res.id.to_string()), res.bytes);
     }
     pub fn clear_resources(&mut self) {
         if let Ok(d) = std::fs::read_dir(&self.temp_dir) {
-            for e in d {
-                if let Ok(entry) = e {
-                    _ = std::fs::remove_file(entry.path());
-                }
+            for entry in d.flatten() {
+                _ = std::fs::remove_file(entry.path());
             }
         }
         self.resources.clear();

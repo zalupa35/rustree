@@ -70,7 +70,7 @@ impl Application {
                         };
                         if find_node_with_same_name_in_same_parent_node(
                             self.clone().document.root_node,
-                            id.clone(),
+                            id,
                             name.clone(),
                         )
                         .is_some()
@@ -115,7 +115,6 @@ impl Application {
     /// Open document
     pub fn open_document(&mut self) {
         if self.is_node_editing && self.save_editing_node() && self.node_started_editing {
-            return;
         } else if self.save_document_dialog() {
             let mut nfc = dialog::NativeFileChooser::new(dialog::FileDialogType::BrowseFile);
             nfc.set_filter(RTD_FILTER);

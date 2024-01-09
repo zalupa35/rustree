@@ -23,9 +23,9 @@ impl Application {
             let main_text_view = &mut self.ui.main_text_view;
             let filename = main_text_view.filename();
             let link_href = filename.to_str().unwrap();
-            if link_href.starts_with("node://") {
+            if let Some(stripped) = link_href.strip_prefix("node://") {
                 _ = main_text_view.load("");
-                if let Ok(id) = &link_href[7..].parse::<u32>() {
+                if let Ok(id) = &stripped.parse::<u32>() {
                     self.update_document_tree(Some(
                         if self.document.clone().get_node(*id).is_some() {
                             *id
@@ -236,7 +236,7 @@ impl Application {
                         let settings = &mut self.main_settings;
                         if let Some(ui) = &mut settings.ui {
                             settings.editor_text_size = ui.editor_text_size.value() as i32;
-                            if let Some(index) = ui.shortcuts_browser.selected_items().get(0) {
+                            if let Some(index) = ui.shortcuts_browser.selected_items().first() {
                                 if let Some((_, element_type)) = settings
                                     .elements_shortcuts_browser_indexes
                                     .iter()
@@ -265,7 +265,7 @@ impl Application {
                                 settings.theme = Theme::from_string(theme);
                             }
                         }
-                        for (_, e) in &mut settings.shortcuts_manager.elements {
+                        for e in settings.shortcuts_manager.elements.values_mut() {
                             if let UIElement::MenuItem(item) = e {
                                 item.set_shortcut(Shortcut::None);
                             }

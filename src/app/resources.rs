@@ -55,7 +55,7 @@ impl Application {
                 .clone()
                 .resources
                 .into_iter()
-                .filter(|(s, _)| items.iter().find(|i| i.label().unwrap() == *s).is_none())
+                .filter(|(s, _)| !items.iter().any(|i| i.label().unwrap() == *s))
                 .collect::<BTreeMap<_, _>>();
             self.update_resources(None);
         }

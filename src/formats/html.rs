@@ -1,4 +1,3 @@
-use html2md;
 use regex::Regex;
 
 pub fn remove_html_tags(html: String) -> String {

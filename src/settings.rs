@@ -39,7 +39,7 @@ pub enum UIElementType {
 
 impl ToString for UIElementType {
     fn to_string(&self) -> String {
-        return format!("{:?}", self);
+        format!("{:?}", self)
     }
 }
 
@@ -134,18 +134,16 @@ impl MainSettings {
                     Err(e) => {
                         dialog::alert_default(&format!(
                             "Can't parse settings:\n{}",
-                            e.to_string().split(",").collect::<Vec<_>>().join("\n")
+                            e.to_string().split(',').collect::<Vec<_>>().join("\n")
                         ));
                     }
                 },
                 Err(e) => {
-                    dialog::alert_default(&format!("Can't read settings:\n{}", e.to_string()));
+                    dialog::alert_default(&format!("Can't read settings:\n{}", e));
                 }
             }
-        } else {
-            if let Err(s) = SettingsDocument::new().write() {
-                dialog::alert_default(&s);
-            };
+        } else if let Err(s) = SettingsDocument::new().write() {
+            dialog::alert_default(&s);
         }
         Self {
             shortcuts_manager: ShortcutsManager::new(),
@@ -203,7 +201,7 @@ pub fn show(app: &mut Application) {
         theme_choice.add(
             &Theme::get_themes()
                 .iter()
-                .map(|theme| format!("{}|", theme.to_string()))
+                .map(|theme| theme.to_string() + "|")
                 .collect::<String>(),
         );
         theme_choice.set_value(&settings.theme.to_string());
@@ -256,7 +254,7 @@ impl ShortcutsManager {
 
     /// Get default shortcuts
     pub fn default_shortcuts() -> BTreeMap<UIElementType, Shortcut> {
-        vec![
+        [
             (UIElementType::OpenFile, Shortcut::Command | 'o'),
             (UIElementType::SaveFile, Shortcut::Command | 's'),
             (UIElementType::SaveAsFile, Shortcut::Command | 'S'),
@@ -273,7 +271,7 @@ impl ShortcutsManager {
             (UIElementType::DownNodeBtn, Shortcut::Alt | 'd'),
         ]
         .iter()
-        .map(|e| e.clone())
+        .cloned()
         .collect::<BTreeMap<_, _>>()
     }
 }
